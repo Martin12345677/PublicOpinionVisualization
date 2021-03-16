@@ -16,24 +16,32 @@
 
 <script>
 import { defineComponent, ref } from 'vue';
-// import { useRoute } from 'vue-router'
+import { useRouter } from 'vue-router';
 
 function useTab() {
   const tabs = ref([
     {
-      name: '首页',
-      path: '',
+      name: '舆情案例',
+      path: '/',
     },
+    {
+      name: '检索',
+      path: '/search',
+    },
+    {
+      name: '新冠肺炎案例可视化', 
+      path: '/covid',
+    }
   ]);
-  // const route = useRoute();
-  const curTab = ref(tabs.value[0]);
+  const router = useRouter();
+  const curTab = ref({});
   return {
     tabs,
     curTab,
     changeTab(tab) {
       if (curTab.value !== tab) {
         curTab.value = tab;
-        // route.value.push(tab.path);
+        router.push(tab.path);
       }
     }
   }
@@ -66,6 +74,7 @@ export default defineComponent({
   }
   .header_tab {
     cursor: pointer;
+    margin-right: 40px;
     &:hover {
       color: $headerHoverColor;
     }

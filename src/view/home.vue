@@ -18,13 +18,19 @@
       <div class="news_content">
         {{ curNews.content.split('http')[0] }}
       </div>
+      <iframe
+        class="comments_graph"
+        :src="commentsGraphHtmlSrc"
+        width="1000"
+        height="550"
+      ></iframe>
     </div>
   </div>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue';
-import api from '../api/news'
+import api from '../api/news';
 
 function useSearch() {
   const keyword = ref('');
@@ -40,10 +46,13 @@ function useSearch() {
 
 function useNews() {
   const curNews = ref(null);
+  const commentsGraphHtmlSrc = ref('');
   return {
     curNews,
-    showNews(news) {
+    commentsGraphHtmlSrc,
+    async showNews(news) {
       curNews.value = news;
+      commentsGraphHtmlSrc.value = await api.getCommentsGraphUrl(news.id);
     },
   }
 }
@@ -64,7 +73,7 @@ export default defineComponent({
 .home_body {
   text-align: center;
   width: 50%;
-  min-width: 700px;
+  min-width: 1000px;
   margin: auto;
 
   .search_part {
@@ -86,6 +95,10 @@ export default defineComponent({
       line-height: 25px;
       color: $contentColor;
     }
+  }
+  iframe {
+    margin-top: 30px;
+    border: none;
   }
 }
 </style>

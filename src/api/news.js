@@ -1,4 +1,4 @@
-import { get } from '../utils/axios'
+import { get, origin } from '../utils/axios'
 
 export default {
   async searchNews(keyword) {
@@ -10,5 +10,17 @@ export default {
       return data;
     }
     return [];
+  },
+  getCommentsGraphUrl(newsId) {
+    return `${origin}/graph/comments?news_id=${newsId}`;
+  },
+  getNewsGraphUrl(keyword) {
+    return `${origin}/graph/keyword?keyword=${keyword}`;
+  },
+  getCovidWeiboAttitudeGraphUrl() {
+    return `${origin}/graph/attitude/covid`;
+  },
+  getCovidWeiboNumGraphUrl() {
+    return `${origin}/graph/num/covid`;
   },
 }
