@@ -39,4 +39,7 @@ body {
 .body {
   display: flex;
 }
+* {
+  box-sizing: border-box;
+}
 </style>

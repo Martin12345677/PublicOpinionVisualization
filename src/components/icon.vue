@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     symbolName() {
-      return `#svg_${this.name}`;
+      return `#${this.name}--sprite`;
     },
     svgClass() {
       if (this.name) {
@@ -52,7 +52,7 @@ export default {
       return;
     }
     setTimeout(() => {
-      this.xml = document.getElementById(`svg_${this.name}`);
+      this.xml = document.getElementById(`${this.name}--sprite`);
       this.getSize();
       this.getViewBox();
       this.visible = true;
