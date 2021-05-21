@@ -21,15 +21,15 @@ export const menu = [
     children: [
       {
         name: '案例模型',
-        path: '',
+        path: '/',
       },
       {
         name: '案例舆情可视化',
-        path: '',
+        path: '/covid',
       },
       {
         name: '检索',
-        path: '',
+        path: '/search',
       },
     ],
   },

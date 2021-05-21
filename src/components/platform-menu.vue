@@ -18,7 +18,7 @@
             class="project_item"
             @click="changePro(idx)"
           >
-            <icon name="text" height="16" width="16" />
+            <img class="project_icon" :src="`./image/menu-${idx}.png`" />
             <div class="project_name" :title="pro.name">
               {{ pro.name.length > 9 ? `${pro.name.slice(0, 8)}...` : pro.name }}
             </div>
@@ -51,8 +51,8 @@
 import { defineComponent, ref, watch } from 'vue';
 import { menu } from '../utils/menu';
 import icon from '../components/icon';
-import '../assets/svg/text.svg?sprite';
 import '../assets/svg/arrow_down.svg?sprite';
+import { useRouter } from 'vue-router';
 
 function useProject() {
   const projects = ref(menu);
@@ -61,6 +61,8 @@ function useProject() {
   watch(curProIdx, () => {
     curSubProIdx.value = -1;
   });
+
+  const router = useRouter();
 
   return {
     projects,
@@ -75,6 +77,7 @@ function useProject() {
     },
     changeSubPro(idx) {
       curSubProIdx.value = idx;
+      router.push(projects.value[curProIdx.value].children[curSubProIdx.value].path);
     },
   };
 }
@@ -129,6 +132,10 @@ export default defineComponent({
     .svg_text {
       margin: 0 8px 0 5px;
       vertical-align: middle;
+    }
+    .project_icon {
+      width: 24px;
+      height: 24px;
     }
     .project_name {
       margin-left: 4px;

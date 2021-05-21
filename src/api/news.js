@@ -23,4 +23,7 @@ export default {
   getCovidWeiboNumGraphUrl() {
     return `${origin}/graph/num/covid`;
   },
+  getContentWordCloudUrl(newsId) {
+    return `${origin}/graph/wordcloud?news_id=${newsId}`;
+  },
 }

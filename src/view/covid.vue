@@ -91,18 +91,22 @@ export default defineComponent({
     border: none;
   }
   .covid_graph_menu_item {
-    color: $hintColor;
+    color: $contentColor;
     &:hover {
       background-color: transparent;
-      color: $contentColor;
+      color: $hintColor;
     }
   }
   .is-active {
-    color: $contentColor !important;
+    color: $hintColor !important;
     background-color: transparent !important;
   }
   iframe {
     border: none;
+  }
+  .el-date-editor.el-input {
+    width: 120px;
+    margin: 20px 0 20px 16px;
   }
 }
 </style>

@@ -24,6 +24,13 @@
         width="1000"
         height="550"
       ></iframe>
+      <div class="content_word_cloud">
+        <img
+          class="content_word_cloud_img"
+          :src="contentWordCloudSrc"
+        >
+      </div>
+
     </div>
   </div>
 </template>
@@ -47,12 +54,15 @@ function useSearch() {
 function useNews() {
   const curNews = ref(null);
   const commentsGraphHtmlSrc = ref('');
+  const contentWordCloudSrc = ref('');
   return {
     curNews,
     commentsGraphHtmlSrc,
+    contentWordCloudSrc,
     async showNews(news) {
       curNews.value = news;
       commentsGraphHtmlSrc.value = await api.getCommentsGraphUrl(news.id);
+      contentWordCloudSrc.value = await api.getContentWordCloudUrl(news.id);
     },
   }
 }
@@ -77,7 +87,7 @@ export default defineComponent({
   margin: auto;
 
   .search_part {
-    margin: 200px 0 50px;
+    margin: 200px 0 50px 0;
   }
   .el-autocomplete {
     width: 500px;
@@ -99,6 +109,16 @@ export default defineComponent({
   iframe {
     margin-top: 30px;
     border: none;
+  }
+  .content_word_cloud {
+    width: 500px;
+    height: 300px;
+    margin: auto;
+    padding: 20px;
+  }
+  .content_word_cloud_img {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

@@ -3,7 +3,9 @@
     <common-header />
     <div class="body">
       <common-menu />
-      <router-view />
+      <div class="router_part">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
@@ -41,5 +43,11 @@ body {
 }
 * {
   box-sizing: border-box;
+}
+
+.router_part {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 70px 0 0 240px;
 }
 </style>
